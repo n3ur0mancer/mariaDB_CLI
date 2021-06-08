@@ -17,7 +17,7 @@ async function bookFinder() {
         //console.log(tuples, tuplesLib);
 
         const book_query = await connection.query
-        ("SELECT books.book_title AS book, libraries.library_name AS library FROM books JOIN libraries ON books.book_ID = libraries.library_FK where books.book_title =?", argument);
+        ("SELECT books.book_title AS book, libraries.library_name AS library FROM books JOIN libraries ON books.book_ID = libraries.library_FK where books.book_title LIKE concat('%', ?, '%')", argument);
         console.log(book_query);
 
     } catch (err){
